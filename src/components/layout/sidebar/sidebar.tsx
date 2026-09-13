@@ -59,6 +59,11 @@ const SideBar = () => {
           icon={<Home />}
           children="Home"
           permission={"any"}
+          activePaths={[
+            "/statisticsusers",
+            "/statisticsStores",
+            "/statisticsproducts",
+          ]}
         />
         <ItemHeader
           path="/users"
@@ -122,7 +127,7 @@ const SideBar = () => {
       <SidebarFooter className="border-t border-sidebar-border px-1 pt-2 pb-3">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton>
+            <SidebarMenuButton tooltip="Settings">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <span className="flex w-full items-center gap-2 group-data-[collapsible=icon]:justify-center">

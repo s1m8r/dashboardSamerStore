@@ -4,13 +4,14 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { storeScema } from "@/schemas/store";
-import { useGetStores } from "@/API/store";
+import { useDeleteStore, useGetStores } from "@/API/store";
 import DeleteStore from "./deleteStore";
 import { ArrowDownUp, Pencil, Trash2 } from "lucide-react";
 import { usepermissions } from "@/stores/usePermissions";
 import { Can } from "@/components/functions/can";
 import Padding from "@/components/layout/padding";
-import { Button } from "@/components/ui/button";
+import IconButton from "@/components/layout/iconButton";
+import { toast } from "sonner";
 
 type storeFormData = z.infer<typeof storeScema>;
 
@@ -48,6 +49,20 @@ const ShowStore = () => {
 
   const stores = data?.data ?? [];
   const pagination = data?.pagination;
+
+  const { mutateAsync: deleteStore } = useDeleteStore();
+
+  const bulkDelete = async (ids: string[]) => {
+    const results = await Promise.allSettled(
+      ids.map((id) => deleteStore({ id: Number(id) })),
+    );
+    const failed = results.filter((res) => res.status === "rejected").length;
+    if (failed) {
+      toast.error(`Failed to delete ${failed} of ${ids.length} stores`);
+    } else {
+      toast.success(`Deleted ${ids.length} stores successfully`);
+    }
+  };
 
   const columns: ColumnDef<storeFormData>[] = [
     {
@@ -126,10 +141,9 @@ const ShowStore = () => {
         const id = row.original.id;
         return (
           <Can permission={usepermissions.updateStores}>
-            <Button
+            <IconButton
               variant="default"
-              size="icon"
-              aria-label="Edit"
+              label="Edit"
               onClick={() =>
                 navigate({
                   to: "/stores/edit/$id",
@@ -143,7 +157,7 @@ const ShowStore = () => {
               }
             >
               <Pencil />
-            </Button>
+            </IconButton>
           </Can>
         );
       },
@@ -158,10 +172,9 @@ const ShowStore = () => {
 
         return (
           <Can permission={usepermissions.deleteStores}>
-            <Button
+            <IconButton
               variant="destructive"
-              size="icon"
-              aria-label="Delete"
+              label="Delete"
               onClick={() => {
                 setShowDel(true);
                 setStoreId(id);
@@ -169,7 +182,7 @@ const ShowStore = () => {
               }}
             >
               <Trash2 />
-            </Button>
+            </IconButton>
           </Can>
         );
       },
@@ -191,6 +204,8 @@ const ShowStore = () => {
           setSearch={setSearch}
           permissionAdd={usepermissions.createStores}
           isSearching={isFetching}
+          getRowId={(row) => String(row.id)}
+          onBulkDelete={bulkDelete}
         />
       )}
 

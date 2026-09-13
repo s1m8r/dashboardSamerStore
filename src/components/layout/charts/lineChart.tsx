@@ -80,11 +80,11 @@ export function LineChartItems({ data, setTime }: Props) {
     { label: "10 years", value: "3650" },
   ];
   const [value, Setvalue] = React.useState("90");
-  const newDate = new Date();
-  newDate.setDate(newDate.getDate() - Number(value));
   React.useEffect(() => {
-    setTime(newDate.toString());
-  }, [newDate, setTime]);
+    const from = new Date();
+    from.setDate(from.getDate() - Number(value));
+    setTime(from.toString());
+  }, [value, setTime]);
   return (
     <Card className="py-4 sm:py-0">
       <CardHeader className="flex flex-col items-stretch border-b p-0! sm:flex-row">

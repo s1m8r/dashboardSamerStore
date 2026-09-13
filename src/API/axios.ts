@@ -23,7 +23,14 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response?.status === 401) {
-      useAuthStore((state) => state.logout);
+      useAuthStore.getState().logout();
+
+      // A 401 from the login request itself means bad credentials, not an
+      // expired session - redirecting there would wipe the form error.
+      const path = window.location.pathname;
+      if (path !== "/login" && path !== "/register") {
+        window.location.href = "/login";
+      }
     }
     return Promise.reject(error);
   },

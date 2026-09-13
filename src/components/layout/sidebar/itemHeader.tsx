@@ -21,6 +21,7 @@ interface Props {
   textAdd?: string;
   permission: string[] | string;
   permissionAdd?: string;
+  activePaths?: string[];
 }
 
 export default function ItemHeader({
@@ -31,17 +32,25 @@ export default function ItemHeader({
   textAdd,
   permission,
   permissionAdd,
+  activePaths = [],
 }: Props) {
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
-  const isActive = path === "/" ? pathname === "/" : pathname.startsWith(path);
+  const isActive = [path, ...activePaths].some((item) =>
+    item === "/" ? pathname === "/" : pathname.startsWith(item),
+  );
 
   return (
     <SidebarGroup className="py-0.5">
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton asChild isActive={isActive} className="group h-9">
+          <SidebarMenuButton
+            asChild
+            isActive={isActive}
+            tooltip={children}
+            className="group h-9"
+          >
             <div className="flex items-center justify-between group-data-[collapsible=icon]:justify-center">
               <Can permission={permission}>
                 <Link to={path} className="flex flex-1 items-center gap-2.5 group-data-[collapsible=icon]:flex-none">

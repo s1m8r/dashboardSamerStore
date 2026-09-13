@@ -67,8 +67,8 @@ const StatisticsStores = () => {
         />
         <CardNew
           name="Top Rating"
-          count={stores?.data[0].rating ?? 0}
-          itemSelect={stores?.data[0].name ?? ""}
+          count={stores?.data[0]?.rating ?? 0}
+          itemSelect={stores?.data[0]?.name ?? ""}
           icon={<TrendingUp />}
         />
         {select && (

@@ -50,9 +50,9 @@ const Home = () => {
         />
         <CardNew
           name="Top Store"
-          count={stores?.data[0].rating ?? 0}
+          count={stores?.data[0]?.rating ?? 0}
           icon={<Trophy />}
-          itemSelect={`${stores?.data[0].name}`}
+          itemSelect={stores?.data[0]?.name ?? ""}
           accent="rose"
         />
       </DesignCard>

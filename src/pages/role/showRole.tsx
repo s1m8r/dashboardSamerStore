@@ -4,13 +4,14 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { roleScema } from "@/schemas/role";
-import { useGetRoles } from "@/API/role";
+import { useDeleteRole, useGetRoles, useUpdateRole } from "@/API/role";
 import DeleteRole from "./DeleteRole";
 import { ArrowDownUp, Pencil, Trash2 } from "lucide-react";
 import { usepermissions } from "@/stores/usePermissions";
 import { Can } from "@/components/functions/can";
 import Padding from "@/components/layout/padding";
-import { Button } from "@/components/ui/button";
+import IconButton from "@/components/layout/iconButton";
+import { toast } from "sonner";
 
 type roleFormData = z.infer<typeof roleScema>;
 
@@ -48,6 +49,37 @@ const ShowRole = () => {
 
   const roles = data?.data ?? [];
   const pagination = data?.pagination;
+
+  const { mutateAsync: deleteRole } = useDeleteRole();
+  const { mutateAsync: updateRole } = useUpdateRole();
+
+  const bulkDelete = async (ids: string[]) => {
+    const results = await Promise.allSettled(
+      ids.map((id) => deleteRole({ id: Number(id) })),
+    );
+    const failed = results.filter((res) => res.status === "rejected").length;
+    if (failed) {
+      toast.error(`Failed to delete ${failed} of ${ids.length} roles`);
+    } else {
+      toast.success(`Deleted ${ids.length} roles successfully`);
+    }
+  };
+
+  const bulkActivate = async (ids: string[], active: boolean) => {
+    const selected = roles.filter((item) => ids.includes(String(item.id)));
+    const results = await Promise.allSettled(
+      selected.map((item) =>
+        updateRole({ id: item.id!, data: { ...item, isActive: active } }),
+      ),
+    );
+    const failed = results.filter((res) => res.status === "rejected").length;
+    const label = active ? "Activated" : "Deactivated";
+    if (failed) {
+      toast.error(`Failed to update ${failed} of ${selected.length} roles`);
+    } else {
+      toast.success(`${label} ${selected.length} roles successfully`);
+    }
+  };
 
   const columns: ColumnDef<roleFormData>[] = [
     {
@@ -98,10 +130,9 @@ const ShowRole = () => {
 
         return (
           <Can permission={usepermissions.updateRoles}>
-            <Button
+            <IconButton
               variant="default"
-              size="icon"
-              aria-label="Edit"
+              label="Edit"
               onClick={() =>
                 navigate({
                   to: "/roles/edit/$id",
@@ -115,7 +146,7 @@ const ShowRole = () => {
               }
             >
               <Pencil />
-            </Button>
+            </IconButton>
           </Can>
         );
       },
@@ -130,10 +161,9 @@ const ShowRole = () => {
 
         return (
           <Can permission={usepermissions.deleteRoles}>
-            <Button
+            <IconButton
               variant="destructive"
-              size="icon"
-              aria-label="Delete"
+              label="Delete"
               onClick={() => {
                 setShowDel(true);
                 setRoleId(id);
@@ -141,7 +171,7 @@ const ShowRole = () => {
               }}
             >
               <Trash2 />
-            </Button>
+            </IconButton>
           </Can>
         );
       },
@@ -163,6 +193,9 @@ const ShowRole = () => {
           setSearch={setSearch}
           permissionAdd={usepermissions.createRoles}
           isSearching={isFetching}
+          getRowId={(row) => String(row.id)}
+          onBulkDelete={bulkDelete}
+          onBulkActivate={bulkActivate}
         />
       )}
 

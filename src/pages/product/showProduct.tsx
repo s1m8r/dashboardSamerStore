@@ -4,14 +4,15 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { ProductScema } from "@/schemas/product";
-import { useGetProducts } from "@/API/product";
+import { useDeleteProduct, useGetProducts } from "@/API/product";
 import { useGetTypes } from "@/API/types";
 import DeleteProduct from "./deleteProduct";
 import { usepermissions } from "@/stores/usePermissions";
 import { Can } from "@/components/functions/can";
 import Padding from "@/components/layout/padding";
-import { Button } from "@/components/ui/button";
+import IconButton from "@/components/layout/iconButton";
 import { ArrowDownUp, Pencil, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 type productFormData = z.infer<typeof ProductScema>;
 
@@ -53,6 +54,20 @@ const ShowProduct = () => {
   const { data: types } = useGetTypes();
   const typeName = (value: string) =>
     types?.data.find((item) => item.value === value)?.name ?? value;
+
+  const { mutateAsync: deleteProduct } = useDeleteProduct();
+
+  const bulkDelete = async (ids: string[]) => {
+    const results = await Promise.allSettled(
+      ids.map((id) => deleteProduct({ id: Number(id) })),
+    );
+    const failed = results.filter((res) => res.status === "rejected").length;
+    if (failed) {
+      toast.error(`Failed to delete ${failed} of ${ids.length} products`);
+    } else {
+      toast.success(`Deleted ${ids.length} products successfully`);
+    }
+  };
 
   const columns: ColumnDef<productFormData>[] = [
     {
@@ -115,10 +130,9 @@ const ShowProduct = () => {
 
         return (
           <Can permission={usepermissions.updateProducts}>
-            <Button
+            <IconButton
               variant="default"
-              size="icon"
-              aria-label="Edit"
+              label="Edit"
               onClick={() =>
                 navigate({
                   to: "/products/edit/$id",
@@ -129,7 +143,7 @@ const ShowProduct = () => {
               }
             >
               <Pencil />
-            </Button>
+            </IconButton>
           </Can>
         );
       },
@@ -143,10 +157,9 @@ const ShowProduct = () => {
 
         return (
           <Can permission={usepermissions.deleteProducts}>
-            <Button
+            <IconButton
               variant="destructive"
-              size="icon"
-              aria-label="Delete"
+              label="Delete"
               onClick={() => {
                 setShowDel(true);
                 setProductId(id);
@@ -154,7 +167,7 @@ const ShowProduct = () => {
               }}
             >
               <Trash2 />
-            </Button>
+            </IconButton>
           </Can>
         );
       },
@@ -176,6 +189,8 @@ const ShowProduct = () => {
           setSearch={setSearch}
           isSearching={isFetching}
           permissionAdd={usepermissions.createProducts}
+          getRowId={(row) => String(row.id)}
+          onBulkDelete={bulkDelete}
         />
       )}
       {showDel && productId && (

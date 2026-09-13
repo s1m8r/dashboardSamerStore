@@ -1,6 +1,6 @@
 import Table from "@/components/layout/table";
 
-import { useGetUsers } from "@/API/user";
+import { useDeleteUser, useGetUsers, useUpdateUser } from "@/API/user";
 import { registerSchema } from "@/schemas/user";
 import z from "zod";
 import { ColumnDef } from "@tanstack/react-table";
@@ -11,7 +11,8 @@ import { ArrowDownUp, Pencil, Trash2 } from "lucide-react";
 import { Can } from "@/components/functions/can";
 import { usepermissions } from "@/stores/usePermissions";
 import Padding from "@/components/layout/padding";
-import { Button } from "@/components/ui/button";
+import IconButton from "@/components/layout/iconButton";
+import { toast } from "sonner";
 
 type registerFormData = z.infer<typeof registerSchema>;
 const ShowUser = () => {
@@ -42,6 +43,37 @@ const ShowUser = () => {
         from: "/users",
       },
     });
+  };
+
+  const { mutateAsync: deleteUser } = useDeleteUser();
+  const { mutateAsync: updateUser } = useUpdateUser();
+
+  const bulkDelete = async (ids: string[]) => {
+    const results = await Promise.allSettled(
+      ids.map((id) => deleteUser({ id: Number(id) })),
+    );
+    const failed = results.filter((res) => res.status === "rejected").length;
+    if (failed) {
+      toast.error(`Failed to delete ${failed} of ${ids.length} users`);
+    } else {
+      toast.success(`Deleted ${ids.length} users successfully`);
+    }
+  };
+
+  const bulkActivate = async (ids: string[], active: boolean) => {
+    const selected = users.filter((item) => ids.includes(String(item.id)));
+    const results = await Promise.allSettled(
+      selected.map((item) =>
+        updateUser({ id: item.id!, data: { ...item, isActive: active } }),
+      ),
+    );
+    const failed = results.filter((res) => res.status === "rejected").length;
+    const label = active ? "Activated" : "Deactivated";
+    if (failed) {
+      toast.error(`Failed to update ${failed} of ${selected.length} users`);
+    } else {
+      toast.success(`${label} ${selected.length} users successfully`);
+    }
   };
   const columns: ColumnDef<registerFormData>[] = [
     {
@@ -119,7 +151,7 @@ const ShowUser = () => {
         const id = row.original.id;
         return (
           <Can permission={usepermissions.updateUser}>
-            <Button
+            <IconButton
               onClick={() =>
                 navigate({
                   to: "/users/edit/$id",
@@ -132,11 +164,10 @@ const ShowUser = () => {
                 })
               }
               variant="default"
-              size="icon"
-              aria-label="Edit"
+              label="Edit"
             >
               <Pencil />
-            </Button>
+            </IconButton>
           </Can>
         );
       },
@@ -150,18 +181,17 @@ const ShowUser = () => {
         const name = row.original.firstName;
         return (
           <Can permission={usepermissions.deleteUser}>
-            <Button
+            <IconButton
               onClick={() => {
                 setShowDel(true);
                 setUserId(id);
                 setUserName(name);
               }}
               variant="destructive"
-              size="icon"
-              aria-label="Delete"
+              label="Delete"
             >
               <Trash2 />
-            </Button>
+            </IconButton>
           </Can>
         );
       },
@@ -182,6 +212,9 @@ const ShowUser = () => {
           setSearch={setSearch}
           permissionAdd={usepermissions.createUser}
           isSearching={isFetching}
+          getRowId={(row) => String(row.id)}
+          onBulkDelete={bulkDelete}
+          onBulkActivate={bulkActivate}
         />
       )}
 

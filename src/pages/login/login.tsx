@@ -58,16 +58,24 @@ const Login = () => {
               errorMessage={errors.email?.message}
             />
 
-            <InputForm
-              register={register}
-              icon={<KeySquareIcon />}
-              name="password"
-              placeholder="Password"
-              label="Password"
-              type="password"
-              errorMessage={errors.password?.message}
-              isPassword={true}
-            />
+            <div>
+              <InputForm
+                register={register}
+                icon={<KeySquareIcon />}
+                name="password"
+                placeholder="Password"
+                label="Password"
+                type="password"
+                errorMessage={errors.password?.message}
+                isPassword={true}
+              />
+              <Link
+                to="/forgot-password"
+                className="mt-1.5 flex justify-end text-sm text-muted-foreground underline-offset-4 transition hover:text-foreground hover:underline"
+              >
+                Forgot password?
+              </Link>
+            </div>
 
             <Button
               variant="default"

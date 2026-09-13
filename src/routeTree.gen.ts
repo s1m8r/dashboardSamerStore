@@ -13,6 +13,7 @@ import { Route as SplatRouteImport } from './routes/$'
 import { Route as protecedRouteRouteImport } from './routes/(proteced)/route'
 import { Route as publicRegisterRouteImport } from './routes/(public)/register'
 import { Route as publicLoginRouteImport } from './routes/(public)/login'
+import { Route as publicForgotPasswordRouteImport } from './routes/(public)/forgot-password'
 import { Route as public401RouteImport } from './routes/(public)/401'
 import { Route as protecedhomeRouteRouteImport } from './routes/(proteced)/(home)/route'
 import { Route as protecedUsersIndexRouteImport } from './routes/(proteced)/users/index'
@@ -52,6 +53,11 @@ const publicRegisterRoute = publicRegisterRouteImport.update({
 const publicLoginRoute = publicLoginRouteImport.update({
   id: '/(public)/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicForgotPasswordRoute = publicForgotPasswordRouteImport.update({
+  id: '/(public)/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const public401Route = public401RouteImport.update({
@@ -166,6 +172,7 @@ const protecedProductsEditIdRoute = protecedProductsEditIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/$': typeof SplatRoute
   '/401': typeof public401Route
+  '/forgot-password': typeof publicForgotPasswordRoute
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
   '/statisticsStores': typeof protecedhomeStatisticsStoresRoute
@@ -191,6 +198,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/$': typeof SplatRoute
   '/401': typeof public401Route
+  '/forgot-password': typeof publicForgotPasswordRoute
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
   '/statisticsStores': typeof protecedhomeStatisticsStoresRoute
@@ -219,6 +227,7 @@ export interface FileRoutesById {
   '/$': typeof SplatRoute
   '/(proteced)/(home)': typeof protecedhomeRouteRouteWithChildren
   '/(public)/401': typeof public401Route
+  '/(public)/forgot-password': typeof publicForgotPasswordRoute
   '/(public)/login': typeof publicLoginRoute
   '/(public)/register': typeof publicRegisterRoute
   '/(proteced)/(home)/statisticsStores': typeof protecedhomeStatisticsStoresRoute
@@ -246,6 +255,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/$'
     | '/401'
+    | '/forgot-password'
     | '/login'
     | '/register'
     | '/statisticsStores'
@@ -271,6 +281,7 @@ export interface FileRouteTypes {
   to:
     | '/$'
     | '/401'
+    | '/forgot-password'
     | '/login'
     | '/register'
     | '/statisticsStores'
@@ -298,6 +309,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/(proteced)/(home)'
     | '/(public)/401'
+    | '/(public)/forgot-password'
     | '/(public)/login'
     | '/(public)/register'
     | '/(proteced)/(home)/statisticsStores'
@@ -325,6 +337,7 @@ export interface RootRouteChildren {
   protecedRouteRoute: typeof protecedRouteRouteWithChildren
   SplatRoute: typeof SplatRoute
   public401Route: typeof public401Route
+  publicForgotPasswordRoute: typeof publicForgotPasswordRoute
   publicLoginRoute: typeof publicLoginRoute
   publicRegisterRoute: typeof publicRegisterRoute
 }
@@ -357,6 +370,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof publicLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/forgot-password': {
+      id: '/(public)/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof publicForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(public)/401': {
@@ -572,6 +592,7 @@ const rootRouteChildren: RootRouteChildren = {
   protecedRouteRoute: protecedRouteRouteWithChildren,
   SplatRoute: SplatRoute,
   public401Route: public401Route,
+  publicForgotPasswordRoute: publicForgotPasswordRoute,
   publicLoginRoute: publicLoginRoute,
   publicRegisterRoute: publicRegisterRoute,
 }
