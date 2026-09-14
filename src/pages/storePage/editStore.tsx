@@ -1,7 +1,7 @@
 import { useGetStore, useUpdateStore } from "@/API/store";
 import Store from "@/features/storePage/store";
-import { Route } from "@/routes/(proteced)/stores/edit/$id";
-import { storeScema } from "@/schemas/store";
+import { Route } from "@/routes/(protected)/stores/edit/$id";
+import { storeSchema } from "@/schemas/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
@@ -15,7 +15,7 @@ const EditStore = () => {
   const search = Route.useSearch();
   const { mutate, isPending } = useUpdateStore();
   const { data: getStore, isLoading } = useGetStore(id);
-  type storeFormData = z.infer<typeof storeScema>;
+  type storeFormData = z.infer<typeof storeSchema>;
   const {
     register,
     control,
@@ -24,7 +24,7 @@ const EditStore = () => {
     formState: { errors, isDirty },
     reset,
   } = useForm({
-    resolver: zodResolver(storeScema),
+    resolver: zodResolver(storeSchema),
   });
   const onsubmit = (data: storeFormData) => {
     const formatData = {

@@ -1,4 +1,4 @@
-import { roleScema } from "@/schemas/role";
+import { roleSchema } from "@/schemas/role";
 import z from "zod";
 import type {
   FieldErrors,
@@ -17,7 +17,7 @@ import { usepermissions } from "@/stores/usePermissions";
 import Container from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 
-type roleFormData = z.infer<typeof roleScema>;
+type roleFormData = z.infer<typeof roleSchema>;
 
 interface Props {
   title: string;
@@ -89,7 +89,7 @@ export default function Role({
     [usepermissions.updatePermissions]: "تحديث صلاحية",
     [usepermissions.deletePermissions]: "حذف صلاحية",
 
-    [usepermissions.redDashboard]: "عرض لوحة التحكم",
+    [usepermissions.readDashboard]: "عرض لوحة التحكم",
 
     [usepermissions.usersUpdatePassword]: "تغيير كلمة مرور المستخدم",
 

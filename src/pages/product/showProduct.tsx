@@ -3,7 +3,7 @@ import z from "zod";
 import { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { ProductScema } from "@/schemas/product";
+import { ProductSchema } from "@/schemas/product";
 import { useDeleteProduct, useGetProducts } from "@/API/product";
 import { useGetTypes } from "@/API/types";
 import DeleteProduct from "./deleteProduct";
@@ -14,7 +14,7 @@ import IconButton from "@/components/layout/iconButton";
 import { ArrowDownUp, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
-type productFormData = z.infer<typeof ProductScema>;
+type productFormData = z.infer<typeof ProductSchema>;
 
 const ShowProduct = () => {
   const navigate = useNavigate();
@@ -88,6 +88,19 @@ const ShowProduct = () => {
     {
       accessorKey: "name",
       header: () => <span>Name</span>,
+      cell: ({ row }) => (
+        <span
+          className="cursor-pointer font-semibold text-primary hover:underline"
+          onClick={() =>
+            navigate({
+              to: "/products/product/$id",
+              params: { id: row.original.id! },
+            })
+          }
+        >
+          {row.original.name}
+        </span>
+      ),
     },
     {
       accessorKey: "storeName",
@@ -97,10 +110,7 @@ const ShowProduct = () => {
       accessorKey: "description",
       header: () => <span>Description</span>,
       cell: ({ row }) => (
-        <p
-          className="line-clamp-2 max-w-xs"
-          title={row.original.description}
-        >
+        <p className="line-clamp-2 max-w-xs" title={row.original.description}>
           {row.original.description}
         </p>
       ),

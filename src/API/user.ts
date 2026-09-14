@@ -6,9 +6,9 @@ import {
 } from "@tanstack/react-query";
 import api from "./axios";
 import { z } from "zod";
-import { registerSchema, userScema } from "@/schemas/user";
+import { registerSchema, userSchema } from "@/schemas/user";
 import { useAuthStore } from "@/stores/userStore";
-type loginSchemaType = z.infer<typeof userScema>;
+type loginSchemaType = z.infer<typeof userSchema>;
 type registerFormData = z.infer<typeof registerSchema>;
 type GetUsersResponse = {
   data: registerFormData[];
@@ -65,7 +65,7 @@ export const changePassword = z.object({
 });
 type changePasswordType = z.infer<typeof changePassword>;
 
-export const useRestPassword = () => {
+export const useResetPassword = () => {
   return useMutation({
     mutationFn: async (data: changePasswordType) => {
       const res = await api.post("/api/reset-password", data);

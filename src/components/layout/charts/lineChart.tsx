@@ -79,7 +79,7 @@ export function LineChartItems({ data, setTime }: Props) {
     { label: "1 Year", value: "365" },
     { label: "10 years", value: "3650" },
   ];
-  const [value, Setvalue] = React.useState("90");
+  const [value, setChartRange] = React.useState("90");
   React.useEffect(() => {
     const from = new Date();
     from.setDate(from.getDate() - Number(value));
@@ -92,7 +92,7 @@ export function LineChartItems({ data, setTime }: Props) {
           <CardTitle>Line Chart - Interactive</CardTitle>
           <CardDescription>
             Showing total visitors for the last {value} days
-            <Select value={value} onValueChange={Setvalue}>
+            <Select value={value} onValueChange={setChartRange}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue />
               </SelectTrigger>

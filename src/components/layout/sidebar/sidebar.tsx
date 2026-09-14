@@ -139,7 +139,7 @@ const SideBar = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to={"/prifile"}>
+                    <Link to={"/profile"}>
                       <User2Icon />
                       Profile
                     </Link>

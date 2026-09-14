@@ -11,7 +11,7 @@ const openingHoursSchema = z.object({
   saturday: z.string().min(1, "Saturday hours are required"),
 });
 
-export const storeScema = z.object({
+export const storeSchema = z.object({
   id: z.number().optional(),
   name: z.string().min(1, "Store name is required"),
   email: z.string().email("Please enter a valid email address"),

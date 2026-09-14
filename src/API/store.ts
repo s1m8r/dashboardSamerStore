@@ -5,11 +5,11 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import api from "./axios";
-import { storeScema } from "@/schemas/store";
+import { storeSchema } from "@/schemas/store";
 import z from "zod";
 
 const queryKey = ["stores"];
-type storeFormData = z.infer<typeof storeScema>;
+type storeFormData = z.infer<typeof storeSchema>;
 type storeResponseType = {
   data: storeFormData[];
   pagination: {

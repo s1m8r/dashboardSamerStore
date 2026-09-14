@@ -5,10 +5,10 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import api from "./axios";
-import { roleScema } from "@/schemas/role";
+import { roleSchema } from "@/schemas/role";
 import z from "zod";
 const queryKey = ["roles"];
-type roleType = z.infer<typeof roleScema>;
+type roleType = z.infer<typeof roleSchema>;
 type roleResponseType = {
   data: roleType[];
   pagination: {

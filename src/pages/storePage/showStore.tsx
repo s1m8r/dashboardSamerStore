@@ -3,7 +3,7 @@ import z from "zod";
 import { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { storeScema } from "@/schemas/store";
+import { storeSchema } from "@/schemas/store";
 import { useDeleteStore, useGetStores } from "@/API/store";
 import DeleteStore from "./deleteStore";
 import { ArrowDownUp, Pencil, Trash2 } from "lucide-react";
@@ -13,7 +13,7 @@ import Padding from "@/components/layout/padding";
 import IconButton from "@/components/layout/iconButton";
 import { toast } from "sonner";
 
-type storeFormData = z.infer<typeof storeScema>;
+type storeFormData = z.infer<typeof storeSchema>;
 
 const ShowStore = () => {
   const navigate = useNavigate();

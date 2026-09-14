@@ -4,7 +4,7 @@ import { registerSchema } from "@/schemas/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
-import { Route } from "@/routes/(proteced)/users/adduser";
+import { Route } from "@/routes/(protected)/users/adduser";
 import { z } from "zod";
 import { toast } from "sonner";
 type registerFormData = z.infer<typeof registerSchema>;

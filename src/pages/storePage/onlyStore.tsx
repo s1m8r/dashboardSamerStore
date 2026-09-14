@@ -1,7 +1,7 @@
 import { useGetStore } from "@/API/store";
 import Padding from "@/components/layout/padding";
 import ContentStore from "@/features/storePage/onlyStore";
-import { Route } from "@/routes/(proteced)/stores/store/$id";
+import { Route } from "@/routes/(protected)/stores/store/$id";
 
 const OnlyStore = () => {
   const { id } = Route.useParams();

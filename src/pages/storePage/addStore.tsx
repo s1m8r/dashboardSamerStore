@@ -1,7 +1,7 @@
 import { useAddStores } from "@/API/store";
 import Store from "@/features/storePage/store";
-import { Route } from "@/routes/(proteced)/stores/addstore";
-import { storeScema } from "@/schemas/store";
+import { Route } from "@/routes/(protected)/stores/addstore";
+import { storeSchema } from "@/schemas/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ const AddStore = () => {
   const navigate = useNavigate();
   const search = Route.useSearch();
   const { mutate, isPending } = useAddStores();
-  type storeFormData = z.infer<typeof storeScema>;
+  type storeFormData = z.infer<typeof storeSchema>;
   const {
     register,
     control,
@@ -20,7 +20,7 @@ const AddStore = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(storeScema),
+    resolver: zodResolver(storeSchema),
   });
   const onsubmit = (data: storeFormData) => {
     const formatData = {

@@ -1,6 +1,6 @@
 import { useGetUser, useUpdateUser } from "@/API/user";
 import RegisterForm from "@/features/register/formRegister/register";
-import { Route } from "@/routes/(proteced)/users/edit/$id";
+import { Route } from "@/routes/(protected)/users/edit/$id";
 import { registerSchema } from "@/schemas/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";

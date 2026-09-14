@@ -126,13 +126,7 @@ export default function RegisterForm({
   isRegister,
   currentRoleName,
 }: Props) {
-  const { data: roles } = useGetRoles(
-    "id",
-    "asc",
-    1,
-    "",
-    active === "edit",
-  );
+  const { data: roles } = useGetRoles("id", "asc", 1, "", active === "edit");
 
   return (
     <Container>

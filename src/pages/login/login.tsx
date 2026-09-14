@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLogin } from "@/API/user";
-import { userScema } from "@/schemas/user";
+import { userSchema } from "@/schemas/user";
 import ErrorMessage from "@/components/forms/errors";
 import { Link } from "@tanstack/react-router";
 import { KeySquareIcon, MailIcon } from "lucide-react";
@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import AuthBrandPanel from "@/components/layout/authBrandPanel";
 
 const Login = () => {
-  type loginSchemaType = z.infer<typeof userScema>;
+  type loginSchemaType = z.infer<typeof userSchema>;
 
   const { mutate, isPending, isError, error } = useLogin();
 
@@ -20,7 +20,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<loginSchemaType>({
-    resolver: zodResolver(userScema),
+    resolver: zodResolver(userSchema),
   });
 
   const handleLogin = (data: loginSchemaType) => {

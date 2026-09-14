@@ -4,7 +4,7 @@ import TitleContent from "@/components/layout/titleContent";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
-import { storeScema } from "@/schemas/store";
+import { storeSchema } from "@/schemas/store";
 import {
   Image,
   Mail,
@@ -27,7 +27,7 @@ import {
 } from "react-hook-form";
 import z from "zod";
 
-type storeFormData = z.infer<typeof storeScema>;
+type storeFormData = z.infer<typeof storeSchema>;
 
 interface Props {
   title: string;

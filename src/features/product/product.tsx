@@ -1,4 +1,4 @@
-import { ProductScema } from "@/schemas/product";
+import { ProductSchema } from "@/schemas/product";
 import z from "zod";
 
 import {
@@ -49,7 +49,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type ProductFormData = z.infer<typeof ProductScema>;
+type ProductFormData = z.infer<typeof ProductSchema>;
 
 interface Props {
   title: string;
@@ -101,6 +101,11 @@ export default function Product({
     control,
     name: "images",
     defaultValue: [],
+  });
+  const posterImage = useWatch({
+    control,
+    name: "image",
+    defaultValue: "",
   });
   const [valuePath, setValuePath] = useState("");
   const [errPath, setErrPath] = useState(false);
@@ -158,6 +163,8 @@ export default function Product({
   const colorShow = colors?.data.filter(
     (i) => !productColors.includes(i.color),
   );
+  const colorName = (value: string) =>
+    colors?.data.find((item) => item.color === value)?.path ?? value;
 
   return (
     <Container>
@@ -281,44 +288,69 @@ export default function Product({
             errorMessage={errors.image?.message}
           />
 
+          {posterImage && (
+            <div className="size-32 overflow-hidden rounded-lg border border-border bg-muted">
+              <img
+                src={posterImage}
+                alt="Poster preview"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          )}
+
           <Field
             data-invalid={errPath || !!errors.images?.message}
             className="w-full"
           >
-            <FieldLabel>Image Add</FieldLabel>
-            <Input
-              aria-invalid={!!errors.images || errPath}
-              value={valuePath}
-              onChange={(e) => {
-                setValuePath(e.target.value);
-                setErrPath(false);
-              }}
-              placeholder="Image path"
-            />
+            <FieldLabel>
+              Gallery images{images?.length ? ` (${images.length})` : ""}
+            </FieldLabel>
+            <div className="flex gap-2">
+              <Input
+                aria-invalid={!!errors.images || errPath}
+                value={valuePath}
+                onChange={(e) => {
+                  setValuePath(e.target.value);
+                  setErrPath(false);
+                }}
+                placeholder="Paste an image URL"
+              />
+              <Button
+                variant="default"
+                onClick={(e) => {
+                  e.preventDefault();
+                  addImage();
+                }}
+              >
+                <PlusIcon />
+                Add
+              </Button>
+            </div>
             {errPath && <FieldError>Enter an image path</FieldError>}
             {errors.images && <FieldError>{errors.images.message}</FieldError>}
           </Field>
 
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              addImage();
-            }}
-          >
-            Add <PlusIcon />
-          </Button>
           {images && images.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
               {images.map((path, index) => (
-                <span
+                <div
                   key={index}
-                  onClick={() => removeImage(index)}
-                  className="flex items-center gap-1 rounded-full border bg-muted px-3 py-1 text-sm cursor-pointer hover:bg-destructive/10 hover:text-destructive hover:border-destructive/50 transition-colors"
+                  className="group relative aspect-square overflow-hidden rounded-lg border border-border bg-muted"
                 >
-                  <img src={path} className="h-6 w-6" />
-
-                  <Trash2 className="h-3 w-3" />
-                </span>
+                  <img
+                    src={path}
+                    alt={`Gallery image ${index + 1}`}
+                    className="h-full w-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeImage(index)}
+                    aria-label={`Remove image ${index + 1}`}
+                    className="absolute top-1 right-1 flex size-6 items-center justify-center rounded-full bg-background/90 text-muted-foreground opacity-0 shadow-sm transition group-hover:opacity-100 focus-visible:opacity-100 hover:bg-destructive hover:text-white"
+                  >
+                    <Trash2 className="size-3" />
+                  </button>
+                </div>
               ))}
             </div>
           )}
@@ -327,61 +359,70 @@ export default function Product({
             data-invalid={errColor || !!errors.colors?.message}
             className="w-full"
           >
-            <FieldLabel>Color</FieldLabel>
-            <Select
-              value={selectedColor}
-              onValueChange={(value) => {
-                setSelectedColor(value);
-                setErrColor(false);
-              }}
-            >
-              <SelectTrigger
-                aria-invalid={!!errors.colors?.message || errColor}
+            <FieldLabel>
+              Colors{productColors?.length ? ` (${productColors.length})` : ""}
+            </FieldLabel>
+            <div className="flex gap-2">
+              <Select
+                value={selectedColor}
+                onValueChange={(value) => {
+                  setSelectedColor(value);
+                  setErrColor(false);
+                }}
               >
-                <SelectValue placeholder="Select color" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {colorShow?.map((item) => (
-                    <SelectItem key={item.color} value={item.color}>
-                      <span
-                        className="w-3 h-3 rounded-full"
-                        style={{ backgroundColor: item.color }}
-                      ></span>
-                      {item.path}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+                <SelectTrigger
+                  className="flex-1"
+                  aria-invalid={!!errors.colors?.message || errColor}
+                >
+                  <SelectValue placeholder="Select color" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {colorShow?.map((item) => (
+                      <SelectItem key={item.color} value={item.color}>
+                        <span
+                          className="size-3 rounded-full ring-1 ring-border"
+                          style={{ backgroundColor: item.color }}
+                        ></span>
+                        {item.path}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              <Button
+                variant="default"
+                onClick={(e) => {
+                  e.preventDefault();
+                  addColor();
+                }}
+              >
+                <PlusIcon />
+                Add
+              </Button>
+            </div>
 
             {errColor && <FieldError>Select a color</FieldError>}
             {errors.colors && <FieldError>{errors.colors.message}</FieldError>}
           </Field>
 
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              addColor();
-            }}
-          >
-            Add <PlusIcon />
-          </Button>
           {productColors && productColors.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="flex flex-wrap gap-2">
               {productColors.map((color, index) => (
-                <span
+                <button
                   key={index}
+                  type="button"
                   onClick={() => removeColor(index)}
-                  className="flex items-center gap-1 rounded-full border bg-muted px-3 py-1 text-sm cursor-pointer hover:bg-destructive/10 hover:text-destructive hover:border-destructive/50 transition-colors"
+                  aria-label={`Remove ${colorName(color)}`}
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-border bg-card py-1 pr-2.5 pl-2.5 text-sm text-foreground transition-colors hover:border-destructive/50 hover:bg-destructive/10 hover:text-destructive"
                 >
                   <span
-                    className="h-3 w-3 rounded-full"
+                    className="size-4 shrink-0 rounded-full ring-1 ring-border"
                     style={{ backgroundColor: color }}
-                  ></span>
-
-                  <Trash2 className="h-3 w-3" />
-                </span>
+                  />
+                  <span>{colorName(color)}</span>
+                  <Trash2 className="size-3 text-muted-foreground transition-colors group-hover:text-destructive" />
+                </button>
               ))}
             </div>
           )}

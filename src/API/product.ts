@@ -1,4 +1,4 @@
-import { ProductScema } from "@/schemas/product";
+import { ProductSchema } from "@/schemas/product";
 import {
   keepPreviousData,
   useMutation,
@@ -8,7 +8,7 @@ import {
 import z from "zod";
 import api from "./axios";
 
-type productFormData = z.infer<typeof ProductScema>;
+type productFormData = z.infer<typeof ProductSchema>;
 type storeResponseType = {
   data: productFormData[];
   pagination: {

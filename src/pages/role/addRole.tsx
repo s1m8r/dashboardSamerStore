@@ -1,13 +1,13 @@
 import { useAddRole } from "@/API/role";
 import Role from "@/features/role/role";
-import { Route } from "@/routes/(proteced)/roles/addrole";
-import { roleScema } from "@/schemas/role";
+import { Route } from "@/routes/(protected)/roles/addrole";
+import { roleSchema } from "@/schemas/role";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
-type roleFormData = z.infer<typeof roleScema>;
+type roleFormData = z.infer<typeof roleSchema>;
 
 const AddRole = () => {
   const {
@@ -15,7 +15,7 @@ const AddRole = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(roleScema),
+    resolver: zodResolver(roleSchema),
   });
   const navigate = useNavigate();
   const search = Route.useSearch();

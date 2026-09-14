@@ -35,7 +35,7 @@ export const usepermissions = {
   createPermissions: "permissions.create",
   updatePermissions: "permissions.update",
   deletePermissions: "permissions.delete",
-  redDashboard: "view_dashboard",
+  readDashboard: "view_dashboard",
   usersUpdatePassword: "users.updatePassword",
   reportsRead: "reports.read",
   reportsGenerate: "reports.generate",

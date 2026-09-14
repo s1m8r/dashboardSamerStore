@@ -1,5 +1,5 @@
 import { z } from "zod";
-export const ProductScema = z.object({
+export const ProductSchema = z.object({
   id: z.number().optional(),
   storeId: z.number("Please select a store"),
   discountPercentage: z

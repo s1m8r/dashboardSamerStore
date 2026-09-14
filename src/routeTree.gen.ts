@@ -10,39 +10,40 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SplatRouteImport } from './routes/$'
-import { Route as protecedRouteRouteImport } from './routes/(proteced)/route'
+import { Route as protectedRouteRouteImport } from './routes/(protected)/route'
 import { Route as publicRegisterRouteImport } from './routes/(public)/register'
 import { Route as publicLoginRouteImport } from './routes/(public)/login'
 import { Route as publicForgotPasswordRouteImport } from './routes/(public)/forgot-password'
 import { Route as public401RouteImport } from './routes/(public)/401'
-import { Route as protecedhomeRouteRouteImport } from './routes/(proteced)/(home)/route'
-import { Route as protecedUsersIndexRouteImport } from './routes/(proteced)/users/index'
-import { Route as protecedStoresIndexRouteImport } from './routes/(proteced)/stores/index'
-import { Route as protecedRolesIndexRouteImport } from './routes/(proteced)/roles/index'
-import { Route as protecedProductsIndexRouteImport } from './routes/(proteced)/products/index'
-import { Route as protecedPrifileIndexRouteImport } from './routes/(proteced)/prifile/index'
-import { Route as protecedhomeIndexRouteImport } from './routes/(proteced)/(home)/index'
-import { Route as protecedUsersStatisticsRouteImport } from './routes/(proteced)/users/statistics'
-import { Route as protecedUsersAdduserRouteImport } from './routes/(proteced)/users/adduser'
-import { Route as protecedStoresAddstoreRouteImport } from './routes/(proteced)/stores/addstore'
-import { Route as protecedRolesAddroleRouteImport } from './routes/(proteced)/roles/addrole'
-import { Route as protecedProductsAddproductRouteImport } from './routes/(proteced)/products/addproduct'
-import { Route as protecedhomeStatisticsusersRouteImport } from './routes/(proteced)/(home)/statisticsusers'
-import { Route as protecedhomeStatisticsproductsRouteImport } from './routes/(proteced)/(home)/statisticsproducts'
-import { Route as protecedhomeStatisticsStoresRouteImport } from './routes/(proteced)/(home)/statisticsStores'
-import { Route as protecedUsersEditIdRouteImport } from './routes/(proteced)/users/edit/$id'
-import { Route as protecedStoresStoreIdRouteImport } from './routes/(proteced)/stores/store/$id'
-import { Route as protecedStoresEditIdRouteImport } from './routes/(proteced)/stores/edit/$id'
-import { Route as protecedRolesEditIdRouteImport } from './routes/(proteced)/roles/edit/$id'
-import { Route as protecedProductsEditIdRouteImport } from './routes/(proteced)/products/edit/$id'
+import { Route as protectedhomeRouteRouteImport } from './routes/(protected)/(home)/route'
+import { Route as protectedUsersIndexRouteImport } from './routes/(protected)/users/index'
+import { Route as protectedStoresIndexRouteImport } from './routes/(protected)/stores/index'
+import { Route as protectedRolesIndexRouteImport } from './routes/(protected)/roles/index'
+import { Route as protectedProfileIndexRouteImport } from './routes/(protected)/profile/index'
+import { Route as protectedProductsIndexRouteImport } from './routes/(protected)/products/index'
+import { Route as protectedhomeIndexRouteImport } from './routes/(protected)/(home)/index'
+import { Route as protectedUsersStatisticsRouteImport } from './routes/(protected)/users/statistics'
+import { Route as protectedUsersAdduserRouteImport } from './routes/(protected)/users/adduser'
+import { Route as protectedStoresAddstoreRouteImport } from './routes/(protected)/stores/addstore'
+import { Route as protectedRolesAddroleRouteImport } from './routes/(protected)/roles/addrole'
+import { Route as protectedProductsAddproductRouteImport } from './routes/(protected)/products/addproduct'
+import { Route as protectedhomeStatisticsusersRouteImport } from './routes/(protected)/(home)/statisticsusers'
+import { Route as protectedhomeStatisticsproductsRouteImport } from './routes/(protected)/(home)/statisticsproducts'
+import { Route as protectedhomeStatisticsStoresRouteImport } from './routes/(protected)/(home)/statisticsStores'
+import { Route as protectedUsersEditIdRouteImport } from './routes/(protected)/users/edit/$id'
+import { Route as protectedStoresStoreIdRouteImport } from './routes/(protected)/stores/store/$id'
+import { Route as protectedStoresEditIdRouteImport } from './routes/(protected)/stores/edit/$id'
+import { Route as protectedRolesEditIdRouteImport } from './routes/(protected)/roles/edit/$id'
+import { Route as protectedProductsProductIdRouteImport } from './routes/(protected)/products/product/$id'
+import { Route as protectedProductsEditIdRouteImport } from './routes/(protected)/products/edit/$id'
 
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
   path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const protecedRouteRoute = protecedRouteRouteImport.update({
-  id: '/(proteced)',
+const protectedRouteRoute = protectedRouteRouteImport.update({
+  id: '/(protected)',
   getParentRoute: () => rootRouteImport,
 } as any)
 const publicRegisterRoute = publicRegisterRouteImport.update({
@@ -65,108 +66,115 @@ const public401Route = public401RouteImport.update({
   path: '/401',
   getParentRoute: () => rootRouteImport,
 } as any)
-const protecedhomeRouteRoute = protecedhomeRouteRouteImport.update({
+const protectedhomeRouteRoute = protectedhomeRouteRouteImport.update({
   id: '/(home)',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedUsersIndexRoute = protecedUsersIndexRouteImport.update({
+const protectedUsersIndexRoute = protectedUsersIndexRouteImport.update({
   id: '/users/',
   path: '/users/',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedStoresIndexRoute = protecedStoresIndexRouteImport.update({
+const protectedStoresIndexRoute = protectedStoresIndexRouteImport.update({
   id: '/stores/',
   path: '/stores/',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedRolesIndexRoute = protecedRolesIndexRouteImport.update({
+const protectedRolesIndexRoute = protectedRolesIndexRouteImport.update({
   id: '/roles/',
   path: '/roles/',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedProductsIndexRoute = protecedProductsIndexRouteImport.update({
+const protectedProfileIndexRoute = protectedProfileIndexRouteImport.update({
+  id: '/profile/',
+  path: '/profile/',
+  getParentRoute: () => protectedRouteRoute,
+} as any)
+const protectedProductsIndexRoute = protectedProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedPrifileIndexRoute = protecedPrifileIndexRouteImport.update({
-  id: '/prifile/',
-  path: '/prifile/',
-  getParentRoute: () => protecedRouteRoute,
-} as any)
-const protecedhomeIndexRoute = protecedhomeIndexRouteImport.update({
+const protectedhomeIndexRoute = protectedhomeIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => protecedhomeRouteRoute,
+  getParentRoute: () => protectedhomeRouteRoute,
 } as any)
-const protecedUsersStatisticsRoute = protecedUsersStatisticsRouteImport.update({
-  id: '/users/statistics',
-  path: '/users/statistics',
-  getParentRoute: () => protecedRouteRoute,
-} as any)
-const protecedUsersAdduserRoute = protecedUsersAdduserRouteImport.update({
+const protectedUsersStatisticsRoute =
+  protectedUsersStatisticsRouteImport.update({
+    id: '/users/statistics',
+    path: '/users/statistics',
+    getParentRoute: () => protectedRouteRoute,
+  } as any)
+const protectedUsersAdduserRoute = protectedUsersAdduserRouteImport.update({
   id: '/users/adduser',
   path: '/users/adduser',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedStoresAddstoreRoute = protecedStoresAddstoreRouteImport.update({
+const protectedStoresAddstoreRoute = protectedStoresAddstoreRouteImport.update({
   id: '/stores/addstore',
   path: '/stores/addstore',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedRolesAddroleRoute = protecedRolesAddroleRouteImport.update({
+const protectedRolesAddroleRoute = protectedRolesAddroleRouteImport.update({
   id: '/roles/addrole',
   path: '/roles/addrole',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedProductsAddproductRoute =
-  protecedProductsAddproductRouteImport.update({
+const protectedProductsAddproductRoute =
+  protectedProductsAddproductRouteImport.update({
     id: '/products/addproduct',
     path: '/products/addproduct',
-    getParentRoute: () => protecedRouteRoute,
+    getParentRoute: () => protectedRouteRoute,
   } as any)
-const protecedhomeStatisticsusersRoute =
-  protecedhomeStatisticsusersRouteImport.update({
+const protectedhomeStatisticsusersRoute =
+  protectedhomeStatisticsusersRouteImport.update({
     id: '/statisticsusers',
     path: '/statisticsusers',
-    getParentRoute: () => protecedhomeRouteRoute,
+    getParentRoute: () => protectedhomeRouteRoute,
   } as any)
-const protecedhomeStatisticsproductsRoute =
-  protecedhomeStatisticsproductsRouteImport.update({
+const protectedhomeStatisticsproductsRoute =
+  protectedhomeStatisticsproductsRouteImport.update({
     id: '/statisticsproducts',
     path: '/statisticsproducts',
-    getParentRoute: () => protecedhomeRouteRoute,
+    getParentRoute: () => protectedhomeRouteRoute,
   } as any)
-const protecedhomeStatisticsStoresRoute =
-  protecedhomeStatisticsStoresRouteImport.update({
+const protectedhomeStatisticsStoresRoute =
+  protectedhomeStatisticsStoresRouteImport.update({
     id: '/statisticsStores',
     path: '/statisticsStores',
-    getParentRoute: () => protecedhomeRouteRoute,
+    getParentRoute: () => protectedhomeRouteRoute,
   } as any)
-const protecedUsersEditIdRoute = protecedUsersEditIdRouteImport.update({
+const protectedUsersEditIdRoute = protectedUsersEditIdRouteImport.update({
   id: '/users/edit/$id',
   path: '/users/edit/$id',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedStoresStoreIdRoute = protecedStoresStoreIdRouteImport.update({
+const protectedStoresStoreIdRoute = protectedStoresStoreIdRouteImport.update({
   id: '/stores/store/$id',
   path: '/stores/store/$id',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedStoresEditIdRoute = protecedStoresEditIdRouteImport.update({
+const protectedStoresEditIdRoute = protectedStoresEditIdRouteImport.update({
   id: '/stores/edit/$id',
   path: '/stores/edit/$id',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedRolesEditIdRoute = protecedRolesEditIdRouteImport.update({
+const protectedRolesEditIdRoute = protectedRolesEditIdRouteImport.update({
   id: '/roles/edit/$id',
   path: '/roles/edit/$id',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
-const protecedProductsEditIdRoute = protecedProductsEditIdRouteImport.update({
+const protectedProductsProductIdRoute =
+  protectedProductsProductIdRouteImport.update({
+    id: '/products/product/$id',
+    path: '/products/product/$id',
+    getParentRoute: () => protectedRouteRoute,
+  } as any)
+const protectedProductsEditIdRoute = protectedProductsEditIdRouteImport.update({
   id: '/products/edit/$id',
   path: '/products/edit/$id',
-  getParentRoute: () => protecedRouteRoute,
+  getParentRoute: () => protectedRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -175,25 +183,26 @@ export interface FileRoutesByFullPath {
   '/forgot-password': typeof publicForgotPasswordRoute
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
-  '/statisticsStores': typeof protecedhomeStatisticsStoresRoute
-  '/statisticsproducts': typeof protecedhomeStatisticsproductsRoute
-  '/statisticsusers': typeof protecedhomeStatisticsusersRoute
-  '/products/addproduct': typeof protecedProductsAddproductRoute
-  '/roles/addrole': typeof protecedRolesAddroleRoute
-  '/stores/addstore': typeof protecedStoresAddstoreRoute
-  '/users/adduser': typeof protecedUsersAdduserRoute
-  '/users/statistics': typeof protecedUsersStatisticsRoute
-  '/': typeof protecedhomeIndexRoute
-  '/prifile/': typeof protecedPrifileIndexRoute
-  '/products/': typeof protecedProductsIndexRoute
-  '/roles/': typeof protecedRolesIndexRoute
-  '/stores/': typeof protecedStoresIndexRoute
-  '/users/': typeof protecedUsersIndexRoute
-  '/products/edit/$id': typeof protecedProductsEditIdRoute
-  '/roles/edit/$id': typeof protecedRolesEditIdRoute
-  '/stores/edit/$id': typeof protecedStoresEditIdRoute
-  '/stores/store/$id': typeof protecedStoresStoreIdRoute
-  '/users/edit/$id': typeof protecedUsersEditIdRoute
+  '/statisticsStores': typeof protectedhomeStatisticsStoresRoute
+  '/statisticsproducts': typeof protectedhomeStatisticsproductsRoute
+  '/statisticsusers': typeof protectedhomeStatisticsusersRoute
+  '/products/addproduct': typeof protectedProductsAddproductRoute
+  '/roles/addrole': typeof protectedRolesAddroleRoute
+  '/stores/addstore': typeof protectedStoresAddstoreRoute
+  '/users/adduser': typeof protectedUsersAdduserRoute
+  '/users/statistics': typeof protectedUsersStatisticsRoute
+  '/': typeof protectedhomeIndexRoute
+  '/products/': typeof protectedProductsIndexRoute
+  '/profile/': typeof protectedProfileIndexRoute
+  '/roles/': typeof protectedRolesIndexRoute
+  '/stores/': typeof protectedStoresIndexRoute
+  '/users/': typeof protectedUsersIndexRoute
+  '/products/edit/$id': typeof protectedProductsEditIdRoute
+  '/products/product/$id': typeof protectedProductsProductIdRoute
+  '/roles/edit/$id': typeof protectedRolesEditIdRoute
+  '/stores/edit/$id': typeof protectedStoresEditIdRoute
+  '/stores/store/$id': typeof protectedStoresStoreIdRoute
+  '/users/edit/$id': typeof protectedUsersEditIdRoute
 }
 export interface FileRoutesByTo {
   '/$': typeof SplatRoute
@@ -201,54 +210,56 @@ export interface FileRoutesByTo {
   '/forgot-password': typeof publicForgotPasswordRoute
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
-  '/statisticsStores': typeof protecedhomeStatisticsStoresRoute
-  '/statisticsproducts': typeof protecedhomeStatisticsproductsRoute
-  '/statisticsusers': typeof protecedhomeStatisticsusersRoute
-  '/products/addproduct': typeof protecedProductsAddproductRoute
-  '/roles/addrole': typeof protecedRolesAddroleRoute
-  '/stores/addstore': typeof protecedStoresAddstoreRoute
-  '/users/adduser': typeof protecedUsersAdduserRoute
-  '/users/statistics': typeof protecedUsersStatisticsRoute
-  '/': typeof protecedhomeIndexRoute
-  '/prifile': typeof protecedPrifileIndexRoute
-  '/products': typeof protecedProductsIndexRoute
-  '/roles': typeof protecedRolesIndexRoute
-  '/stores': typeof protecedStoresIndexRoute
-  '/users': typeof protecedUsersIndexRoute
-  '/products/edit/$id': typeof protecedProductsEditIdRoute
-  '/roles/edit/$id': typeof protecedRolesEditIdRoute
-  '/stores/edit/$id': typeof protecedStoresEditIdRoute
-  '/stores/store/$id': typeof protecedStoresStoreIdRoute
-  '/users/edit/$id': typeof protecedUsersEditIdRoute
+  '/statisticsStores': typeof protectedhomeStatisticsStoresRoute
+  '/statisticsproducts': typeof protectedhomeStatisticsproductsRoute
+  '/statisticsusers': typeof protectedhomeStatisticsusersRoute
+  '/products/addproduct': typeof protectedProductsAddproductRoute
+  '/roles/addrole': typeof protectedRolesAddroleRoute
+  '/stores/addstore': typeof protectedStoresAddstoreRoute
+  '/users/adduser': typeof protectedUsersAdduserRoute
+  '/users/statistics': typeof protectedUsersStatisticsRoute
+  '/': typeof protectedhomeIndexRoute
+  '/products': typeof protectedProductsIndexRoute
+  '/profile': typeof protectedProfileIndexRoute
+  '/roles': typeof protectedRolesIndexRoute
+  '/stores': typeof protectedStoresIndexRoute
+  '/users': typeof protectedUsersIndexRoute
+  '/products/edit/$id': typeof protectedProductsEditIdRoute
+  '/products/product/$id': typeof protectedProductsProductIdRoute
+  '/roles/edit/$id': typeof protectedRolesEditIdRoute
+  '/stores/edit/$id': typeof protectedStoresEditIdRoute
+  '/stores/store/$id': typeof protectedStoresStoreIdRoute
+  '/users/edit/$id': typeof protectedUsersEditIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/(proteced)': typeof protecedRouteRouteWithChildren
+  '/(protected)': typeof protectedRouteRouteWithChildren
   '/$': typeof SplatRoute
-  '/(proteced)/(home)': typeof protecedhomeRouteRouteWithChildren
+  '/(protected)/(home)': typeof protectedhomeRouteRouteWithChildren
   '/(public)/401': typeof public401Route
   '/(public)/forgot-password': typeof publicForgotPasswordRoute
   '/(public)/login': typeof publicLoginRoute
   '/(public)/register': typeof publicRegisterRoute
-  '/(proteced)/(home)/statisticsStores': typeof protecedhomeStatisticsStoresRoute
-  '/(proteced)/(home)/statisticsproducts': typeof protecedhomeStatisticsproductsRoute
-  '/(proteced)/(home)/statisticsusers': typeof protecedhomeStatisticsusersRoute
-  '/(proteced)/products/addproduct': typeof protecedProductsAddproductRoute
-  '/(proteced)/roles/addrole': typeof protecedRolesAddroleRoute
-  '/(proteced)/stores/addstore': typeof protecedStoresAddstoreRoute
-  '/(proteced)/users/adduser': typeof protecedUsersAdduserRoute
-  '/(proteced)/users/statistics': typeof protecedUsersStatisticsRoute
-  '/(proteced)/(home)/': typeof protecedhomeIndexRoute
-  '/(proteced)/prifile/': typeof protecedPrifileIndexRoute
-  '/(proteced)/products/': typeof protecedProductsIndexRoute
-  '/(proteced)/roles/': typeof protecedRolesIndexRoute
-  '/(proteced)/stores/': typeof protecedStoresIndexRoute
-  '/(proteced)/users/': typeof protecedUsersIndexRoute
-  '/(proteced)/products/edit/$id': typeof protecedProductsEditIdRoute
-  '/(proteced)/roles/edit/$id': typeof protecedRolesEditIdRoute
-  '/(proteced)/stores/edit/$id': typeof protecedStoresEditIdRoute
-  '/(proteced)/stores/store/$id': typeof protecedStoresStoreIdRoute
-  '/(proteced)/users/edit/$id': typeof protecedUsersEditIdRoute
+  '/(protected)/(home)/statisticsStores': typeof protectedhomeStatisticsStoresRoute
+  '/(protected)/(home)/statisticsproducts': typeof protectedhomeStatisticsproductsRoute
+  '/(protected)/(home)/statisticsusers': typeof protectedhomeStatisticsusersRoute
+  '/(protected)/products/addproduct': typeof protectedProductsAddproductRoute
+  '/(protected)/roles/addrole': typeof protectedRolesAddroleRoute
+  '/(protected)/stores/addstore': typeof protectedStoresAddstoreRoute
+  '/(protected)/users/adduser': typeof protectedUsersAdduserRoute
+  '/(protected)/users/statistics': typeof protectedUsersStatisticsRoute
+  '/(protected)/(home)/': typeof protectedhomeIndexRoute
+  '/(protected)/products/': typeof protectedProductsIndexRoute
+  '/(protected)/profile/': typeof protectedProfileIndexRoute
+  '/(protected)/roles/': typeof protectedRolesIndexRoute
+  '/(protected)/stores/': typeof protectedStoresIndexRoute
+  '/(protected)/users/': typeof protectedUsersIndexRoute
+  '/(protected)/products/edit/$id': typeof protectedProductsEditIdRoute
+  '/(protected)/products/product/$id': typeof protectedProductsProductIdRoute
+  '/(protected)/roles/edit/$id': typeof protectedRolesEditIdRoute
+  '/(protected)/stores/edit/$id': typeof protectedStoresEditIdRoute
+  '/(protected)/stores/store/$id': typeof protectedStoresStoreIdRoute
+  '/(protected)/users/edit/$id': typeof protectedUsersEditIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -267,12 +278,13 @@ export interface FileRouteTypes {
     | '/users/adduser'
     | '/users/statistics'
     | '/'
-    | '/prifile/'
     | '/products/'
+    | '/profile/'
     | '/roles/'
     | '/stores/'
     | '/users/'
     | '/products/edit/$id'
+    | '/products/product/$id'
     | '/roles/edit/$id'
     | '/stores/edit/$id'
     | '/stores/store/$id'
@@ -293,48 +305,50 @@ export interface FileRouteTypes {
     | '/users/adduser'
     | '/users/statistics'
     | '/'
-    | '/prifile'
     | '/products'
+    | '/profile'
     | '/roles'
     | '/stores'
     | '/users'
     | '/products/edit/$id'
+    | '/products/product/$id'
     | '/roles/edit/$id'
     | '/stores/edit/$id'
     | '/stores/store/$id'
     | '/users/edit/$id'
   id:
     | '__root__'
-    | '/(proteced)'
+    | '/(protected)'
     | '/$'
-    | '/(proteced)/(home)'
+    | '/(protected)/(home)'
     | '/(public)/401'
     | '/(public)/forgot-password'
     | '/(public)/login'
     | '/(public)/register'
-    | '/(proteced)/(home)/statisticsStores'
-    | '/(proteced)/(home)/statisticsproducts'
-    | '/(proteced)/(home)/statisticsusers'
-    | '/(proteced)/products/addproduct'
-    | '/(proteced)/roles/addrole'
-    | '/(proteced)/stores/addstore'
-    | '/(proteced)/users/adduser'
-    | '/(proteced)/users/statistics'
-    | '/(proteced)/(home)/'
-    | '/(proteced)/prifile/'
-    | '/(proteced)/products/'
-    | '/(proteced)/roles/'
-    | '/(proteced)/stores/'
-    | '/(proteced)/users/'
-    | '/(proteced)/products/edit/$id'
-    | '/(proteced)/roles/edit/$id'
-    | '/(proteced)/stores/edit/$id'
-    | '/(proteced)/stores/store/$id'
-    | '/(proteced)/users/edit/$id'
+    | '/(protected)/(home)/statisticsStores'
+    | '/(protected)/(home)/statisticsproducts'
+    | '/(protected)/(home)/statisticsusers'
+    | '/(protected)/products/addproduct'
+    | '/(protected)/roles/addrole'
+    | '/(protected)/stores/addstore'
+    | '/(protected)/users/adduser'
+    | '/(protected)/users/statistics'
+    | '/(protected)/(home)/'
+    | '/(protected)/products/'
+    | '/(protected)/profile/'
+    | '/(protected)/roles/'
+    | '/(protected)/stores/'
+    | '/(protected)/users/'
+    | '/(protected)/products/edit/$id'
+    | '/(protected)/products/product/$id'
+    | '/(protected)/roles/edit/$id'
+    | '/(protected)/stores/edit/$id'
+    | '/(protected)/stores/store/$id'
+    | '/(protected)/users/edit/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  protecedRouteRoute: typeof protecedRouteRouteWithChildren
+  protectedRouteRoute: typeof protectedRouteRouteWithChildren
   SplatRoute: typeof SplatRoute
   public401Route: typeof public401Route
   publicForgotPasswordRoute: typeof publicForgotPasswordRoute
@@ -351,11 +365,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(proteced)': {
-      id: '/(proteced)'
+    '/(protected)': {
+      id: '/(protected)'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof protecedRouteRouteImport
+      preLoaderRoute: typeof protectedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(public)/register': {
@@ -386,210 +400,219 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof public401RouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(proteced)/(home)': {
-      id: '/(proteced)/(home)'
+    '/(protected)/(home)': {
+      id: '/(protected)/(home)'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof protecedhomeRouteRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedhomeRouteRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/users/': {
-      id: '/(proteced)/users/'
+    '/(protected)/users/': {
+      id: '/(protected)/users/'
       path: '/users'
       fullPath: '/users/'
-      preLoaderRoute: typeof protecedUsersIndexRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedUsersIndexRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/stores/': {
-      id: '/(proteced)/stores/'
+    '/(protected)/stores/': {
+      id: '/(protected)/stores/'
       path: '/stores'
       fullPath: '/stores/'
-      preLoaderRoute: typeof protecedStoresIndexRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedStoresIndexRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/roles/': {
-      id: '/(proteced)/roles/'
+    '/(protected)/roles/': {
+      id: '/(protected)/roles/'
       path: '/roles'
       fullPath: '/roles/'
-      preLoaderRoute: typeof protecedRolesIndexRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedRolesIndexRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/products/': {
-      id: '/(proteced)/products/'
+    '/(protected)/profile/': {
+      id: '/(protected)/profile/'
+      path: '/profile'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof protectedProfileIndexRouteImport
+      parentRoute: typeof protectedRouteRoute
+    }
+    '/(protected)/products/': {
+      id: '/(protected)/products/'
       path: '/products'
       fullPath: '/products/'
-      preLoaderRoute: typeof protecedProductsIndexRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedProductsIndexRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/prifile/': {
-      id: '/(proteced)/prifile/'
-      path: '/prifile'
-      fullPath: '/prifile/'
-      preLoaderRoute: typeof protecedPrifileIndexRouteImport
-      parentRoute: typeof protecedRouteRoute
-    }
-    '/(proteced)/(home)/': {
-      id: '/(proteced)/(home)/'
+    '/(protected)/(home)/': {
+      id: '/(protected)/(home)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof protecedhomeIndexRouteImport
-      parentRoute: typeof protecedhomeRouteRoute
+      preLoaderRoute: typeof protectedhomeIndexRouteImport
+      parentRoute: typeof protectedhomeRouteRoute
     }
-    '/(proteced)/users/statistics': {
-      id: '/(proteced)/users/statistics'
+    '/(protected)/users/statistics': {
+      id: '/(protected)/users/statistics'
       path: '/users/statistics'
       fullPath: '/users/statistics'
-      preLoaderRoute: typeof protecedUsersStatisticsRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedUsersStatisticsRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/users/adduser': {
-      id: '/(proteced)/users/adduser'
+    '/(protected)/users/adduser': {
+      id: '/(protected)/users/adduser'
       path: '/users/adduser'
       fullPath: '/users/adduser'
-      preLoaderRoute: typeof protecedUsersAdduserRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedUsersAdduserRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/stores/addstore': {
-      id: '/(proteced)/stores/addstore'
+    '/(protected)/stores/addstore': {
+      id: '/(protected)/stores/addstore'
       path: '/stores/addstore'
       fullPath: '/stores/addstore'
-      preLoaderRoute: typeof protecedStoresAddstoreRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedStoresAddstoreRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/roles/addrole': {
-      id: '/(proteced)/roles/addrole'
+    '/(protected)/roles/addrole': {
+      id: '/(protected)/roles/addrole'
       path: '/roles/addrole'
       fullPath: '/roles/addrole'
-      preLoaderRoute: typeof protecedRolesAddroleRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedRolesAddroleRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/products/addproduct': {
-      id: '/(proteced)/products/addproduct'
+    '/(protected)/products/addproduct': {
+      id: '/(protected)/products/addproduct'
       path: '/products/addproduct'
       fullPath: '/products/addproduct'
-      preLoaderRoute: typeof protecedProductsAddproductRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedProductsAddproductRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/(home)/statisticsusers': {
-      id: '/(proteced)/(home)/statisticsusers'
+    '/(protected)/(home)/statisticsusers': {
+      id: '/(protected)/(home)/statisticsusers'
       path: '/statisticsusers'
       fullPath: '/statisticsusers'
-      preLoaderRoute: typeof protecedhomeStatisticsusersRouteImport
-      parentRoute: typeof protecedhomeRouteRoute
+      preLoaderRoute: typeof protectedhomeStatisticsusersRouteImport
+      parentRoute: typeof protectedhomeRouteRoute
     }
-    '/(proteced)/(home)/statisticsproducts': {
-      id: '/(proteced)/(home)/statisticsproducts'
+    '/(protected)/(home)/statisticsproducts': {
+      id: '/(protected)/(home)/statisticsproducts'
       path: '/statisticsproducts'
       fullPath: '/statisticsproducts'
-      preLoaderRoute: typeof protecedhomeStatisticsproductsRouteImport
-      parentRoute: typeof protecedhomeRouteRoute
+      preLoaderRoute: typeof protectedhomeStatisticsproductsRouteImport
+      parentRoute: typeof protectedhomeRouteRoute
     }
-    '/(proteced)/(home)/statisticsStores': {
-      id: '/(proteced)/(home)/statisticsStores'
+    '/(protected)/(home)/statisticsStores': {
+      id: '/(protected)/(home)/statisticsStores'
       path: '/statisticsStores'
       fullPath: '/statisticsStores'
-      preLoaderRoute: typeof protecedhomeStatisticsStoresRouteImport
-      parentRoute: typeof protecedhomeRouteRoute
+      preLoaderRoute: typeof protectedhomeStatisticsStoresRouteImport
+      parentRoute: typeof protectedhomeRouteRoute
     }
-    '/(proteced)/users/edit/$id': {
-      id: '/(proteced)/users/edit/$id'
+    '/(protected)/users/edit/$id': {
+      id: '/(protected)/users/edit/$id'
       path: '/users/edit/$id'
       fullPath: '/users/edit/$id'
-      preLoaderRoute: typeof protecedUsersEditIdRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedUsersEditIdRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/stores/store/$id': {
-      id: '/(proteced)/stores/store/$id'
+    '/(protected)/stores/store/$id': {
+      id: '/(protected)/stores/store/$id'
       path: '/stores/store/$id'
       fullPath: '/stores/store/$id'
-      preLoaderRoute: typeof protecedStoresStoreIdRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedStoresStoreIdRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/stores/edit/$id': {
-      id: '/(proteced)/stores/edit/$id'
+    '/(protected)/stores/edit/$id': {
+      id: '/(protected)/stores/edit/$id'
       path: '/stores/edit/$id'
       fullPath: '/stores/edit/$id'
-      preLoaderRoute: typeof protecedStoresEditIdRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedStoresEditIdRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/roles/edit/$id': {
-      id: '/(proteced)/roles/edit/$id'
+    '/(protected)/roles/edit/$id': {
+      id: '/(protected)/roles/edit/$id'
       path: '/roles/edit/$id'
       fullPath: '/roles/edit/$id'
-      preLoaderRoute: typeof protecedRolesEditIdRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedRolesEditIdRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
-    '/(proteced)/products/edit/$id': {
-      id: '/(proteced)/products/edit/$id'
+    '/(protected)/products/product/$id': {
+      id: '/(protected)/products/product/$id'
+      path: '/products/product/$id'
+      fullPath: '/products/product/$id'
+      preLoaderRoute: typeof protectedProductsProductIdRouteImport
+      parentRoute: typeof protectedRouteRoute
+    }
+    '/(protected)/products/edit/$id': {
+      id: '/(protected)/products/edit/$id'
       path: '/products/edit/$id'
       fullPath: '/products/edit/$id'
-      preLoaderRoute: typeof protecedProductsEditIdRouteImport
-      parentRoute: typeof protecedRouteRoute
+      preLoaderRoute: typeof protectedProductsEditIdRouteImport
+      parentRoute: typeof protectedRouteRoute
     }
   }
 }
 
-interface protecedhomeRouteRouteChildren {
-  protecedhomeStatisticsStoresRoute: typeof protecedhomeStatisticsStoresRoute
-  protecedhomeStatisticsproductsRoute: typeof protecedhomeStatisticsproductsRoute
-  protecedhomeStatisticsusersRoute: typeof protecedhomeStatisticsusersRoute
-  protecedhomeIndexRoute: typeof protecedhomeIndexRoute
+interface protectedhomeRouteRouteChildren {
+  protectedhomeStatisticsStoresRoute: typeof protectedhomeStatisticsStoresRoute
+  protectedhomeStatisticsproductsRoute: typeof protectedhomeStatisticsproductsRoute
+  protectedhomeStatisticsusersRoute: typeof protectedhomeStatisticsusersRoute
+  protectedhomeIndexRoute: typeof protectedhomeIndexRoute
 }
 
-const protecedhomeRouteRouteChildren: protecedhomeRouteRouteChildren = {
-  protecedhomeStatisticsStoresRoute: protecedhomeStatisticsStoresRoute,
-  protecedhomeStatisticsproductsRoute: protecedhomeStatisticsproductsRoute,
-  protecedhomeStatisticsusersRoute: protecedhomeStatisticsusersRoute,
-  protecedhomeIndexRoute: protecedhomeIndexRoute,
+const protectedhomeRouteRouteChildren: protectedhomeRouteRouteChildren = {
+  protectedhomeStatisticsStoresRoute: protectedhomeStatisticsStoresRoute,
+  protectedhomeStatisticsproductsRoute: protectedhomeStatisticsproductsRoute,
+  protectedhomeStatisticsusersRoute: protectedhomeStatisticsusersRoute,
+  protectedhomeIndexRoute: protectedhomeIndexRoute,
 }
 
-const protecedhomeRouteRouteWithChildren =
-  protecedhomeRouteRoute._addFileChildren(protecedhomeRouteRouteChildren)
+const protectedhomeRouteRouteWithChildren =
+  protectedhomeRouteRoute._addFileChildren(protectedhomeRouteRouteChildren)
 
-interface protecedRouteRouteChildren {
-  protecedhomeRouteRoute: typeof protecedhomeRouteRouteWithChildren
-  protecedProductsAddproductRoute: typeof protecedProductsAddproductRoute
-  protecedRolesAddroleRoute: typeof protecedRolesAddroleRoute
-  protecedStoresAddstoreRoute: typeof protecedStoresAddstoreRoute
-  protecedUsersAdduserRoute: typeof protecedUsersAdduserRoute
-  protecedUsersStatisticsRoute: typeof protecedUsersStatisticsRoute
-  protecedPrifileIndexRoute: typeof protecedPrifileIndexRoute
-  protecedProductsIndexRoute: typeof protecedProductsIndexRoute
-  protecedRolesIndexRoute: typeof protecedRolesIndexRoute
-  protecedStoresIndexRoute: typeof protecedStoresIndexRoute
-  protecedUsersIndexRoute: typeof protecedUsersIndexRoute
-  protecedProductsEditIdRoute: typeof protecedProductsEditIdRoute
-  protecedRolesEditIdRoute: typeof protecedRolesEditIdRoute
-  protecedStoresEditIdRoute: typeof protecedStoresEditIdRoute
-  protecedStoresStoreIdRoute: typeof protecedStoresStoreIdRoute
-  protecedUsersEditIdRoute: typeof protecedUsersEditIdRoute
+interface protectedRouteRouteChildren {
+  protectedhomeRouteRoute: typeof protectedhomeRouteRouteWithChildren
+  protectedProductsAddproductRoute: typeof protectedProductsAddproductRoute
+  protectedRolesAddroleRoute: typeof protectedRolesAddroleRoute
+  protectedStoresAddstoreRoute: typeof protectedStoresAddstoreRoute
+  protectedUsersAdduserRoute: typeof protectedUsersAdduserRoute
+  protectedUsersStatisticsRoute: typeof protectedUsersStatisticsRoute
+  protectedProductsIndexRoute: typeof protectedProductsIndexRoute
+  protectedProfileIndexRoute: typeof protectedProfileIndexRoute
+  protectedRolesIndexRoute: typeof protectedRolesIndexRoute
+  protectedStoresIndexRoute: typeof protectedStoresIndexRoute
+  protectedUsersIndexRoute: typeof protectedUsersIndexRoute
+  protectedProductsEditIdRoute: typeof protectedProductsEditIdRoute
+  protectedProductsProductIdRoute: typeof protectedProductsProductIdRoute
+  protectedRolesEditIdRoute: typeof protectedRolesEditIdRoute
+  protectedStoresEditIdRoute: typeof protectedStoresEditIdRoute
+  protectedStoresStoreIdRoute: typeof protectedStoresStoreIdRoute
+  protectedUsersEditIdRoute: typeof protectedUsersEditIdRoute
 }
 
-const protecedRouteRouteChildren: protecedRouteRouteChildren = {
-  protecedhomeRouteRoute: protecedhomeRouteRouteWithChildren,
-  protecedProductsAddproductRoute: protecedProductsAddproductRoute,
-  protecedRolesAddroleRoute: protecedRolesAddroleRoute,
-  protecedStoresAddstoreRoute: protecedStoresAddstoreRoute,
-  protecedUsersAdduserRoute: protecedUsersAdduserRoute,
-  protecedUsersStatisticsRoute: protecedUsersStatisticsRoute,
-  protecedPrifileIndexRoute: protecedPrifileIndexRoute,
-  protecedProductsIndexRoute: protecedProductsIndexRoute,
-  protecedRolesIndexRoute: protecedRolesIndexRoute,
-  protecedStoresIndexRoute: protecedStoresIndexRoute,
-  protecedUsersIndexRoute: protecedUsersIndexRoute,
-  protecedProductsEditIdRoute: protecedProductsEditIdRoute,
-  protecedRolesEditIdRoute: protecedRolesEditIdRoute,
-  protecedStoresEditIdRoute: protecedStoresEditIdRoute,
-  protecedStoresStoreIdRoute: protecedStoresStoreIdRoute,
-  protecedUsersEditIdRoute: protecedUsersEditIdRoute,
+const protectedRouteRouteChildren: protectedRouteRouteChildren = {
+  protectedhomeRouteRoute: protectedhomeRouteRouteWithChildren,
+  protectedProductsAddproductRoute: protectedProductsAddproductRoute,
+  protectedRolesAddroleRoute: protectedRolesAddroleRoute,
+  protectedStoresAddstoreRoute: protectedStoresAddstoreRoute,
+  protectedUsersAdduserRoute: protectedUsersAdduserRoute,
+  protectedUsersStatisticsRoute: protectedUsersStatisticsRoute,
+  protectedProductsIndexRoute: protectedProductsIndexRoute,
+  protectedProfileIndexRoute: protectedProfileIndexRoute,
+  protectedRolesIndexRoute: protectedRolesIndexRoute,
+  protectedStoresIndexRoute: protectedStoresIndexRoute,
+  protectedUsersIndexRoute: protectedUsersIndexRoute,
+  protectedProductsEditIdRoute: protectedProductsEditIdRoute,
+  protectedProductsProductIdRoute: protectedProductsProductIdRoute,
+  protectedRolesEditIdRoute: protectedRolesEditIdRoute,
+  protectedStoresEditIdRoute: protectedStoresEditIdRoute,
+  protectedStoresStoreIdRoute: protectedStoresStoreIdRoute,
+  protectedUsersEditIdRoute: protectedUsersEditIdRoute,
 }
 
-const protecedRouteRouteWithChildren = protecedRouteRoute._addFileChildren(
-  protecedRouteRouteChildren,
+const protectedRouteRouteWithChildren = protectedRouteRoute._addFileChildren(
+  protectedRouteRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  protecedRouteRoute: protecedRouteRouteWithChildren,
+  protectedRouteRoute: protectedRouteRouteWithChildren,
   SplatRoute: SplatRoute,
   public401Route: public401Route,
   publicForgotPasswordRoute: publicForgotPasswordRoute,

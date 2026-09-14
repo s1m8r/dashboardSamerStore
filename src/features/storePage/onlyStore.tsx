@@ -147,9 +147,7 @@ export default function ContentStore({
                     key={label}
                     className="rounded-lg bg-muted px-1 py-2 text-xs"
                   >
-                    <div className="font-semibold text-foreground">
-                      {label}
-                    </div>
+                    <div className="font-semibold text-foreground">{label}</div>
                     <div className="mt-1 text-muted-foreground">{value}</div>
                   </div>
                 ))}
@@ -174,7 +172,7 @@ export default function ContentStore({
               type="products"
               name={item.name}
               image={item.image}
-              onClick={() => navigator({ to: `/stores/product/${item.id}` })}
+              onClick={() => navigator({ to: `/products/product/${item.id}` })}
             />
           ))}
         </div>

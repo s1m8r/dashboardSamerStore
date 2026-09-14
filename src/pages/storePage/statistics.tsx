@@ -19,14 +19,7 @@ const StatisticsStores = () => {
   const { data: stores } = useGetStores("rating", "desc", 1, search);
   const ratingStore = stores?.data.find((item) => item.name === select);
   const { data: product } = useGetProducts("storeName", "asc", 1, select);
-  const { data: limit } = useGetProducts(
-    "id",
-    "asc",
-    1,
-    select,
-    9999999,
-    time,
-  );
+  const { data: limit } = useGetProducts("id", "asc", 1, select, 9999999, time);
   const dataStores =
     stores?.data.map((item) => ({
       id: item.id!,
