@@ -29,7 +29,7 @@ export default function AuthBrandPanel({ title, description }: Props) {
       </Link>
       <div className="relative max-w-sm">
         <p className="font-heading text-3xl leading-tight font-semibold">
-          {title}xx
+          {title}
         </p>
         <p className="mt-3 text-sm text-sidebar-foreground/70">{description}</p>
       </div>
