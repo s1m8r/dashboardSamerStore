@@ -43,17 +43,20 @@ export default function ItemHeader({
 
   return (
     <SidebarGroup className="py-0.5">
-      <SidebarMenu>
-        <SidebarMenuItem>
-          <SidebarMenuButton
-            asChild
-            isActive={isActive}
-            tooltip={children}
-            className="group h-9"
-          >
-            <div className="flex items-center justify-between group-data-[collapsible=icon]:justify-center">
-              <Can permission={permission}>
-                <Link to={path} className="flex flex-1 items-center gap-2.5 group-data-[collapsible=icon]:flex-none">
+      <Can permission={permission}>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              isActive={isActive}
+              tooltip={children}
+              className="group h-9"
+            >
+              <div className="flex items-center justify-between group-data-[collapsible=icon]:justify-center">
+                <Link
+                  to={path}
+                  className="flex flex-1 items-center gap-2.5 group-data-[collapsible=icon]:flex-none"
+                >
                   <span
                     className={`[&>svg]:size-4 ${isActive ? "text-sidebar-primary" : ""}`}
                   >
@@ -63,29 +66,30 @@ export default function ItemHeader({
                     {children}
                   </span>
                 </Link>
-              </Can>
-              {pathAdd && (
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Can permission={permissionAdd!}>
-                      <Link
-                        to={pathAdd}
-                        search={{ from: pathname }}
-                        className="rounded-full p-1 text-sidebar-foreground/50 opacity-0 transition-all hover:bg-sidebar-primary/15 hover:text-sidebar-primary group-hover:opacity-100 group-data-[collapsible=icon]:hidden"
-                      >
-                        <PlusCircleIcon size={18} />
-                      </Link>
-                    </Can>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{textAdd}</p>
-                  </TooltipContent>
-                </Tooltip>
-              )}
-            </div>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
+
+                {pathAdd && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Can permission={permissionAdd!}>
+                        <Link
+                          to={pathAdd}
+                          search={{ from: pathname }}
+                          className="rounded-full p-1 text-sidebar-foreground/50 opacity-0 transition-all hover:bg-sidebar-primary/15 hover:text-sidebar-primary group-hover:opacity-100 group-data-[collapsible=icon]:hidden"
+                        >
+                          <PlusCircleIcon size={18} />
+                        </Link>
+                      </Can>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{textAdd}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </Can>
     </SidebarGroup>
   );
 }

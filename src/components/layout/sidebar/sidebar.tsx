@@ -46,7 +46,11 @@ const SideBar = () => {
           className="flex items-center gap-2.5 px-1 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0"
         >
           <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white p-1 shadow-sm">
-            <img src="/logo.png" alt="logo" className="size-full object-contain" />
+            <img
+              src="/logo.png"
+              alt="logo"
+              className="size-full object-contain"
+            />
           </span>
           <span className="font-heading text-sm font-semibold tracking-tight text-sidebar-foreground group-data-[collapsible=icon]:hidden">
             Dashboard Samer Store

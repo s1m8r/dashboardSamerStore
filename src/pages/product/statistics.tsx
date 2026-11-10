@@ -18,14 +18,8 @@ const StatisticsProduct = () => {
   const [search, setSearch] = useState("");
   const [select, setSelect] = useState("");
 
-  const { data } = useGetProducts(sortBy, sortOrder, 1, select, 1000000);
-  const { data: badge } = useGetProducts(
-    sortByBadge,
-    sortOrder,
-    1,
-    select,
-    1000000,
-  );
+  const { data } = useGetProducts(sortBy, sortOrder, 1, select);
+  const { data: badge } = useGetProducts(sortByBadge, sortOrder, 1, select);
   const { data: stores } = useGetStores("id", "asc", 1, search);
   const chartData =
     data?.data.map((item) => ({
