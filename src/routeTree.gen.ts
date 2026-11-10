@@ -14,6 +14,7 @@ import { Route as protectedRouteRouteImport } from './routes/(protected)/route'
 import { Route as publicRegisterRouteImport } from './routes/(public)/register'
 import { Route as publicLoginRouteImport } from './routes/(public)/login'
 import { Route as publicForgotPasswordRouteImport } from './routes/(public)/forgot-password'
+import { Route as public403RouteImport } from './routes/(public)/403'
 import { Route as public401RouteImport } from './routes/(public)/401'
 import { Route as protectedhomeRouteRouteImport } from './routes/(protected)/(home)/route'
 import { Route as protectedUsersIndexRouteImport } from './routes/(protected)/users/index'
@@ -59,6 +60,11 @@ const publicLoginRoute = publicLoginRouteImport.update({
 const publicForgotPasswordRoute = publicForgotPasswordRouteImport.update({
   id: '/(public)/forgot-password',
   path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const public403Route = public403RouteImport.update({
+  id: '/(public)/403',
+  path: '/403',
   getParentRoute: () => rootRouteImport,
 } as any)
 const public401Route = public401RouteImport.update({
@@ -180,6 +186,7 @@ const protectedProductsEditIdRoute = protectedProductsEditIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/$': typeof SplatRoute
   '/401': typeof public401Route
+  '/403': typeof public403Route
   '/forgot-password': typeof publicForgotPasswordRoute
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/$': typeof SplatRoute
   '/401': typeof public401Route
+  '/403': typeof public403Route
   '/forgot-password': typeof publicForgotPasswordRoute
   '/login': typeof publicLoginRoute
   '/register': typeof publicRegisterRoute
@@ -237,6 +245,7 @@ export interface FileRoutesById {
   '/$': typeof SplatRoute
   '/(protected)/(home)': typeof protectedhomeRouteRouteWithChildren
   '/(public)/401': typeof public401Route
+  '/(public)/403': typeof public403Route
   '/(public)/forgot-password': typeof publicForgotPasswordRoute
   '/(public)/login': typeof publicLoginRoute
   '/(public)/register': typeof publicRegisterRoute
@@ -266,6 +275,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/$'
     | '/401'
+    | '/403'
     | '/forgot-password'
     | '/login'
     | '/register'
@@ -293,6 +303,7 @@ export interface FileRouteTypes {
   to:
     | '/$'
     | '/401'
+    | '/403'
     | '/forgot-password'
     | '/login'
     | '/register'
@@ -322,6 +333,7 @@ export interface FileRouteTypes {
     | '/$'
     | '/(protected)/(home)'
     | '/(public)/401'
+    | '/(public)/403'
     | '/(public)/forgot-password'
     | '/(public)/login'
     | '/(public)/register'
@@ -351,6 +363,7 @@ export interface RootRouteChildren {
   protectedRouteRoute: typeof protectedRouteRouteWithChildren
   SplatRoute: typeof SplatRoute
   public401Route: typeof public401Route
+  public403Route: typeof public403Route
   publicForgotPasswordRoute: typeof publicForgotPasswordRoute
   publicLoginRoute: typeof publicLoginRoute
   publicRegisterRoute: typeof publicRegisterRoute
@@ -391,6 +404,13 @@ declare module '@tanstack/react-router' {
       path: '/forgot-password'
       fullPath: '/forgot-password'
       preLoaderRoute: typeof publicForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/403': {
+      id: '/(public)/403'
+      path: '/403'
+      fullPath: '/403'
+      preLoaderRoute: typeof public403RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(public)/401': {
@@ -615,6 +635,7 @@ const rootRouteChildren: RootRouteChildren = {
   protectedRouteRoute: protectedRouteRouteWithChildren,
   SplatRoute: SplatRoute,
   public401Route: public401Route,
+  public403Route: public403Route,
   publicForgotPasswordRoute: publicForgotPasswordRoute,
   publicLoginRoute: publicLoginRoute,
   publicRegisterRoute: publicRegisterRoute,

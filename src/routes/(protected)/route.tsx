@@ -10,7 +10,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 export const Route = createFileRoute("/(protected)")({
   beforeLoad: () => {
     const token = useAuthStore.getState().token;
-
+    const role = useAuthStore.getState().user?.roleId;
+    if (role === 3) {
+      throw redirect({
+        to: "/403",
+      });
+    }
     if (!token) {
       throw redirect({
         to: "/login",
